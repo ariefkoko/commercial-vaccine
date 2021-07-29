@@ -5,7 +5,6 @@ class HomeController {
         Vaccine
         .findAll()
             .then(data => {
-                console.log(data)
                 res.render('homePage.ejs',{data})
             })
             .catch(err => {
