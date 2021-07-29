@@ -13,5 +13,6 @@ router.get('/delete/:id', UserController.delete)
 router.get('/edit/:id', UserController.editForm)
 router.post('/edit/:id', UserController.edit)
 router.get('/customer/:id',UserController.customerPage)
+router.get('/customer/:id/pickVaccine/:VaccineId', UserController.pickVaccine)
 
 module.exports = router;

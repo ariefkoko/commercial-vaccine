@@ -1,6 +1,7 @@
 // const {hasPassword} = require('../helper/bcryptpass')
 const {City,User,Vaccine,VaccineCity} = require('../models/index')
 const { correctPassword } = require('../helper/bcryptpass')
+const { convertEfficacy } = require('../helper/convert')
 
 
 class UserController {
@@ -44,7 +45,7 @@ class UserController {
         })
             .then(data => {
                 if(data.role === 'admin' && password === data.password) res.redirect('/user/admin');
-                else if (correctPassword(password, data.password)) res.send('haaaai')
+                else if (correctPassword(password, data.password)) res.redirect(`/user/customer/${data.id}`)
                 else res.send('email/password salah')
             })
             .catch(err => {
@@ -159,7 +160,31 @@ class UserController {
     }
 
     static customerPage(req, res) {
-        res.send('hallso')
+        const id = req.params.id;
+        User.findByPk(id, {
+            include: [
+                {
+                    model: Vaccine,
+                },
+                {
+                model: City,
+                include: [Vaccine]
+                }
+            ]
+        })
+            // .then(data => res.send(data))
+            .then(data => res.render('customerPage' ,{ data, convertEfficacy }))
+            .catch(err => res.send(err))
+    }
+
+    static pickVaccine(req, res) {
+        const { id, VaccineId } =req.params;
+        
+        User.update({ VaccineId }, { 
+            where : { id }
+        })
+            .then(_ => res.redirect(`/user/customer/${id}`))
+            .catch(err => res.send(err))
     }
 }
 
