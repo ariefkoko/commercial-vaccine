@@ -1,0 +1,13 @@
+<%- include('header',{title : "Home Page"}) %>
+<body>
+    
+    <h1> This is Home Page  </h1><br><br>
+    <% data.forEach(el => { %>
+        <div style="width: 20pz; color: gray; padding: 20px; background-color: bisque; border: 2px solid black;">
+            <%=el.vaccine_name%>
+        </div>
+    <%})%>
+    <button><a href="/user">Register</a></button>
+    
+</body>
+</html>
