@@ -1,6 +1,6 @@
 <%- include('./partial/header',{title : "Home Page"}) %>
 <body>
-    <form action="vaccine/admin/add" method="POST">
+    <form action="/user/edit/<%=data.id%>" method="POST">
         <h3>Add Vaccine</h3>
         <label>Vaccine name</label><br>
         <input value="<%=data.vaccine_name%>" type="text" name="vaccine_name"><br>
