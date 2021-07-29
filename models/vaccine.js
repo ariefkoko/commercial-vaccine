@@ -18,6 +18,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'VaccineId'
       })
     }
+
+    convertPrice() {
+      return `IDR ${this.price.toLocaleString('id')}`
+    }
   };
   Vaccine.init({
     vaccine_name: DataTypes.STRING,

@@ -57,9 +57,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     hooks: {
-      beforeCreate: (instance, options) => {
-        return hasPassword(instance.password)
-      },
+      // beforeCreate: (instance, options) => {
+      //   return hasPassword(instance.password)
+      // },
+      beforeCreate(instance, options) {
+        instance.password = hasPassword(instance.password);
+        instance.role = 'customer';
+      }
     },
     sequelize,
     modelName: 'User',
