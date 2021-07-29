@@ -1,0 +1,34 @@
+<%- include('./partial/header',{title : "Register Page"}) %>
+<body>
+    <h1>Admin</h1><br>
+    <div style="border: 2px solid black; padding: 20px;">
+        <form action="city/admin/add" method="POST">
+            <h3>Tambah Kota</h3>
+            <label>Kota</label><br>
+            <input type="text" name="city_name"><br><br>
+            <input type="submit" value="Add city">
+        </form>
+    </div>
+    <div style="border: 2px solid black; padding: 20px;">
+        <form action="vaccine/admin/add" method="POST">
+            <h3>Add Vaccine</h3>
+            <label>Vaccine name</label><br>
+            <input type="text" name="vaccine_name"><br>
+            <label>Country Manufacture</label><br>
+            <input type="text" name="country_manufacture"><br>
+            <label>Effication</label><br>
+            <input type="text" name="effication"><br>
+            <label>Price</label><br>
+            <input type="text" name="price"><br>
+            <label>Description</label><br>
+            <input type="text" name="price"><br>
+            <label>Price</label><br>
+            <input type="number" name="description"><br>
+            <label>Image</label><br>
+            <input type="text" name="image"><br><br>
+            <input type="submit" value="Add Vaccine">
+        </form>
+    </div>
+
+</body>
+</html>

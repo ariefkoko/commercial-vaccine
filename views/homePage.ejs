@@ -9,6 +9,7 @@
             </form>
             <div>
                 <a class="btn btn-primary" href="/user">Register</a>
+                <a href="/user/login">Login</a>
             </div>
         </div>
     </nav>
@@ -22,8 +23,7 @@
                         <h5 class="card-title"><%= e.vaccine_name %> </h5>
                         <p class="card-text"><%= e.country_manufacture %> </p>
                         <p class="card-text"><%= e.base_material %> </p>
-                        <p class="card-text">Efficacy : <%= convertEfficacy(e.efficacy) %> </p>
-                        
+                        <p class="card-text">Efficacy : <%= convertEfficacy(e.efficacy) %> </p>    
                         <a href="/vaccine/<%= e.id %> " class="btn btn-primary">Details</a>
                     </div>
                 </div>
