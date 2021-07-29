@@ -1,10 +1,42 @@
 [
     {
-        "vaccine_name": null,
-        "country_manufacture": null,
-        "base_material": null,
-        "efficacy": null,
-        "price": null,
-        "description": null
+        "vaccine_name": "AstraZeneca",
+        "country_manufacture": "Inggris",
+        "base_material": "viral vector",
+        "efficacy": 75,
+        "price": 350000,
+        "description": "Vaksin ini mengandung virus yang tidak berbahaya. Setelah disuntikkan, virus ini akan masuk ke dalam sel tubuh, kemudian memicu sistem imun tubuh untuk menghasilkan antibodi dan mengaktifkan sel imun yang dapat melawan virus Corona."
+    },
+    {
+        "vaccine_name": "Sinopharm",
+        "country_manufacture": "China",
+        "base_material": "inactivated virus",
+        "efficacy": 79,
+        "price": 400000,
+        "description": "Cara kerja vaksin Sinopharm yaitu memicu sistem kekebalan tubuh untuk menghasilkan antibodi terhadap virus Corona menggunakan virus yang telah dimatikan."
+    },
+    {
+        "vaccine_name": "Moderna",
+        "country_manufacture": "Amerika Serikat",
+        "base_material": "messenger RNA",
+        "efficacy": 94,
+        "price": 550000,
+        "description": "Vaksin mRNA bekerja dengan cara mengarahkan sel tubuh untuk memproduksi protein yang berbentuk sama seperti protein pada virus Corona. Selanjutnya, sel-sel tubuh akan menghasilkan antibodi untuk melawan protein tersebut. Antibodi inilah yang kemudian akan melindungi tubuh dari virus Corona."
+    },
+    {
+        "vaccine_name": "Pfizer-BioNTech",
+        "country_manufacture": "Amerika Serikat",
+        "base_material": "messenger RNA",
+        "efficacy": 95,
+        "price": 740000,
+        "description": "Menggunakan bahan dasar yang sama dengan vaksin Moderna, hasil uji klinis fase 3 vaksin Pfizer sedikit lebih tinggi daripada vaksin Moderna. Namun, terlepas dari perbedaan efikasi vaksin Moderna dan vaksin Pfizer, kedua vaksin COVID-19 ini secara umum memiliki tingkat keamanan dan efek samping yang hampir sama."
+    },
+    {
+        "vaccine_name": "Novavax",
+        "country_manufacture": "Amerika Serikat",
+        "base_material": "protein subunit",
+        "efficacy": 85,
+        "price": 570000,
+        "description": "Protein subunit yang digunakan pada vaksin Novavax adalah protein yang dibuat khusus untuk meniru protein alami pada virus Corona. Setelah masuk ke dalam tubuh, protein tersebut akan memicu reaksi antibodi untuk melawan virus Corona dan mencegah infeksi."
     }
 ]
