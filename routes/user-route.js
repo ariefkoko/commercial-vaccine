@@ -12,5 +12,6 @@ router.post('/vaccinetocity/admin/add',UserController.addVaccineToCity)
 router.get('/delete/:id', UserController.delete)
 router.get('/edit/:id', UserController.editForm)
 router.get('/customer/:id',UserController.customerPage)
+router.get('/customer/:id/pickVaccine/:VaccineId', UserController.pickVaccine)
 
 module.exports = router;
