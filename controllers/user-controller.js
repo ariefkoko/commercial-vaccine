@@ -73,9 +73,9 @@ class UserController {
             .then(dataVaccine => {
                 res.render('adminPage.ejs',{dataCity,dataVaccine})
             })    
-            .catch(err => [
+            .catch(err => {
                 res.send(err)
-            ])
+            })
     }
 
     static addVaccine(req,res) {
@@ -107,9 +107,9 @@ class UserController {
             .then(_ => {
                 res.redirect('/user/admin')
             })
-            .catch(err => [
+            .catch(err => {
                 res.send(err)
-            ])
+            })
     }
 
     static delete(req,res) {
@@ -130,8 +130,28 @@ class UserController {
     static editForm(req,res) {
         Vaccine.findByPk(req.params.id)
         .then(data => {
-            console.log(data.description)
             res.render('formEdit.ejs',{data})
+        })
+        .catch(err => {
+            res.send(err)
+        })
+    }
+
+    static edit(req,res) {
+        const newData = {
+            vaccine_name : req.body.vaccine_name,
+            country_manufacture : req.body.country_manufacture,
+            efficacy : req.body.effication,
+            base_material : req.body.base_material,
+            price : req.body.price      
+        }
+        Vaccine.update(newData,{
+            where : {
+                id : req.params.id
+            }
+        })
+        .then(_ => {
+            res.redirect('/user/admin')
         })
         .catch(err => {
             res.send(err)
