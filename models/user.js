@@ -20,6 +20,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   User.init({
+    CityId: DataTypes.INTEGER,
+    VaccineId: DataTypes.INTEGER,
     name: {
       type: DataTypes.STRING,
       validate : {

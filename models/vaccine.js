@@ -25,7 +25,8 @@ module.exports = (sequelize, DataTypes) => {
     base_material: DataTypes.STRING,
     efficacy: DataTypes.INTEGER,
     price: DataTypes.INTEGER,
-    description: DataTypes.TEXT
+    description: DataTypes.TEXT,
+    image: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Vaccine',
