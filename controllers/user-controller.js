@@ -1,5 +1,6 @@
 // const {hasPassword} = require('../helper/bcryptpass')
 const {City,User} = require('../models/index')
+const { correctPassword } = require('../helper/bcryptpass')
 
 class UserController {
     static registerPage(req,res) {
@@ -18,13 +19,12 @@ class UserController {
             role : req.body.role,
             email : req.body.email,
             password : req.body.name,
-            cityId : req.body.cityId,
-            createdAt : new Date(),
-            updatedAt : new Date()
+            cityId : req.body.cityId
         }
         User.create(newData)
-            .then(_ => {
-                res.send('Anda terdaftar')
+            .then(data => {
+                const id = data.id;
+                res.redirect(`/user/customer/${id}`)
             })
             .catch(err => {
                 res.send(err)
@@ -36,22 +36,14 @@ class UserController {
     }
     
     static login(req,res) {
-        // res.send(dataLogin)
+        const { email, password } = req.body;
         User.findOne({
-            where : {
-                email : req.body.email,
-                password : req.body.password
-            }
+            where : { email }
         })
             .then(data => {
-                if(data.role === 'admin'){
-                    res.redirect('/user/admin')
-                }else{
-                    res.send('haaaa')
-                }
-                // console.log(data)
-                // res.send(data)
-                // kalau ketemu redirect ke path sesuai dengan role
+                if(data.role === 'admin' && password === data.password) res.redirect('/user/admin');
+                else if (correctPassword(password, data.password)) res.send('haaaai')
+                else res.send('email/password salah')
             })
             .catch(err => {
                 res.send("register terlebih dahulu")
@@ -71,6 +63,10 @@ class UserController {
 
     static adminPage(req,res) {    
         res.render('adminPage.ejs')
+    }
+
+    static customerPage(req, res) {
+        res.send('hallso')
     }
 }
 
