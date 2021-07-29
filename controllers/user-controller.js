@@ -45,7 +45,7 @@ class UserController {
         })
             .then(data => {
                 if(data.role === 'admin'){
-                    res.render('adminPage.ejs')
+                    res.redirect('/user/admin')
                 }else{
                     res.send('haaaa')
                 }
@@ -59,7 +59,18 @@ class UserController {
     }
 
     static addCity(req,res){
-        res.send(req.body)
+        let newData = {city_name : req.body.city_name }
+        City.create(newData)
+            .then(_ => {
+                res.redirect('/user/admin')
+            })
+            .catch(err => {
+                res.send(err)
+            })
+    }
+
+    static adminPage(req,res) {    
+        res.render('adminPage.ejs')
     }
 }
 
