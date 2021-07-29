@@ -1,0 +1,37 @@
+<%- include('./partial/header',{title : 'Vaccine'}) %>
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Commercial Vaccine</a>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+            <div>
+                <a class="btn btn-primary" href="/user">Register</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h1><%= data.vaccine_name %></h1>
+        <div class="card mb-3" style="max-width: 5400px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="/image/<%= data.image %>" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Country Manufacturer : <%= data.country_manufacture %> </h5>
+                        <h5 class="card-title">Material Base : <%= data.base_material %> </h5>
+                        <h5 class="card-title">Efficacy : <%= convertEfficacy(data.efficacy) %> </h5>
+                        <h5 class="card-title">Price : <%= convertPrice(data.price) %> </h5>
+                        <h5 class="card-title">Description :</h5>
+                        <p class="card-text"> <%= data.description %></p>
+                        <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

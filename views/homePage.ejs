@@ -1,13 +1,34 @@
 <%- include('./partial/header',{title : "Home Page"}) %>
 <body>
-    
-    <h1> This is Home Page  </h1><br><br>
-    <% data.forEach(el => { %>
-        <div style="width: 20pz; color: gray; padding: 20px; background-color: bisque; border: 2px solid black;">
-            <%=el.vaccine_name%>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand">Commercial Vaccine</a>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+            <div>
+                <a class="btn btn-primary" href="/user">Register</a>
+            </div>
         </div>
-    <%})%>
-    <button><a href="/user">Register</a></button>
-    
+    </nav>
+    <div class="container">
+        <h1 class="text-center">LIst Vaccine</h1>
+        <div>
+            <% data.forEach(e => { %>
+                <div class="card" style="width: 18rem;">
+                    <img src="/image/<%= e.image %>"class="card-img-top" alt="..">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= e.vaccine_name %> </h5>
+                        <p class="card-text"><%= e.country_manufacture %> </p>
+                        <p class="card-text"><%= e.base_material %> </p>
+                        <p class="card-text">Efficacy : <%= convertEfficacy(e.efficacy) %> </p>
+                        
+                        <a href="/vaccine/<%= e.id %> " class="btn btn-primary">Details</a>
+                    </div>
+                </div>
+            <% }) %> 
+        </div>
+    </div>
 </body>
 </html>

@@ -1,16 +1,11 @@
-const {Vaccine} = require('../models/index')
+const {Vaccine} = require('../models')
+const { convertEfficacy } = require('../helper/convert')
 
 class HomeController {
     static homePage(req,res){
-        Vaccine
-        .findAll()
-            .then(data => {
-                console.log(data)
-                res.render('homePage.ejs',{data})
-            })
-            .catch(err => {
-                res.send(err)
-            })
+        Vaccine.findAll()
+            .then(data => res.render('homePage.ejs',{data, convertEfficacy}))
+            .catch(err => res.send(err))
     }   
 }
 
