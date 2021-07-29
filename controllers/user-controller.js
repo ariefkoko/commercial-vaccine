@@ -99,17 +99,30 @@ class UserController {
     }
 
     static addVaccineToCity(req,res) {
+        const {CityId,VaccineId} = req.body
         const newData = {
-            CityId : req.body.CityId,
-            VaccineId : req.body.VaccineId
+            CityId,
+            VaccineId
         }
-        VaccineCity.create(newData)
-            .then(_ => {
-                res.redirect('/user/admin')
-            })
-            .catch(err => {
-                res.send(err)
-            })
+        VaccineCity.findOne({
+            where : {
+                CityId,
+                VaccineId 
+            }
+        })
+        .then(data => {
+            if(data){
+                res.send(`Vaccsine has been available in this city`)
+            }else{
+                return VaccineCity.create(newData)
+            }
+        })
+        .then(_ => {
+            res.redirect('/user/admin')
+        })
+        .catch(err => {
+            res.send(err)
+        })
     }
 
     static delete(req,res) {

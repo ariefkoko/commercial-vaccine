@@ -1,4 +1,5 @@
 const router = require('express').Router()
+const isLogin = require('../middleware/isLogin')
 const UserController = require('../controllers/user-controller')
 
 router.get('/register',UserController.registerPage)
