@@ -55,6 +55,11 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   }, {
+    hooks: {
+      beforeCreate: (instance, options) => {
+        
+      },
+    },
     sequelize,
     modelName: 'User',
   });
