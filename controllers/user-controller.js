@@ -1,5 +1,5 @@
 // const {hasPassword} = require('../helper/bcryptpass')
-const {City,User} = require('../models/index')
+const {City,User,Vaccine,VaccineCity} = require('../models/index')
 
 class UserController {
     static registerPage(req,res) {
@@ -17,10 +17,8 @@ class UserController {
             name : req.body.name,
             role : req.body.role,
             email : req.body.email,
-            password : req.body.name,
-            cityId : req.body.cityId,
-            createdAt : new Date(),
-            updatedAt : new Date()
+            password : req.body.password,
+            CityId : req.body.cityId
         }
         User.create(newData)
             .then(_ => {
@@ -69,8 +67,79 @@ class UserController {
             })
     }
 
-    static adminPage(req,res) {    
-        res.render('adminPage.ejs')
+    static adminPage(req,res) {
+        let dataCity = null
+        City.findAll()
+            .then(data => {
+                dataCity = data
+                return Vaccine.findAll()
+            })
+            .then(dataVaccine => {
+                res.render('adminPage.ejs',{dataCity,dataVaccine})
+            })    
+            .catch(err => [
+                res.send(err)
+            ])
+    }
+
+    static addVaccine(req,res) {
+        const newData = {
+            vaccine_name : req.body.vaccine_name,
+            country_manufacture : req.body.country_manufacture,
+            efficacy : req.body.effication,
+            base_material : req.body.base_material,
+            price : req.body.price,
+            description : req.body.description,
+            image : req.body.image        }
+
+        Vaccine.create(newData)
+        .then(_ => {
+            res.redirect('/user/admin')
+        })
+        .catch(err => {
+            console.log(err)
+            res.send(err)
+        })
+    }
+
+    static addVaccineToCity(req,res) {
+        const newData = {
+            CityId : req.body.CityId,
+            VaccineId : req.body.VaccineId
+        }
+        VaccineCity.create(newData)
+            .then(_ => {
+                res.redirect('/user/admin')
+            })
+            .catch(err => [
+                res.send(err)
+            ])
+    }
+
+    static delete(req,res) {
+        Vaccine.destroy({
+            where : {
+                id : req.params.id
+            }
+        })
+
+        .then(_ => {
+            res.redirect('/user/admin')
+        })
+        .catch(err => {
+            res.send(err)
+        })
+    }
+
+    static editForm(req,res) {
+        Vaccine.findByPk(req.params.id)
+        .then(data => {
+            console.log(data.description)
+            res.render('formEdit.ejs',{data})
+        })
+        .catch(err => {
+            res.send(err)
+        })
     }
 }
 
