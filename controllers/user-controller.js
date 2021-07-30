@@ -44,7 +44,10 @@ class UserController {
             where : { email }
         })
             .then(data => {
-                if(data.role === 'admin' && password === data.password) res.redirect('/user/admin');
+                if(data.role === 'admin' && password === data.password){
+                    req.session.isLogin = true
+                    res.redirect('/user/admin');
+                }    
                 else if (correctPassword(password, data.password)) res.redirect(`/user/customer/${data.id}`)
                 else res.send('email/password salah')
             })
