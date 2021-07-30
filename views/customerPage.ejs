@@ -20,7 +20,7 @@
                       <h5 class="card-title"><%= data.Vaccine.vaccine_name %></h5>
                       <p class="card-text"><%= data.Vaccine.description %></p>
                       <h2 class="card-text"><%= data.Vaccine.convertPrice() %></h2>
-                      <a href="/user/customer/<%= data.id %> " class="btn btn-warning">Process</a>
+                      <a href="/user/customer/<%= data.email %>/send " class="btn btn-warning">Process</a>
                     </div>
                   </div>
                 </div>

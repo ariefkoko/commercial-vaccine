@@ -2,6 +2,7 @@
 const {City,User,Vaccine,VaccineCity} = require('../models/index')
 const { correctPassword } = require('../helper/bcryptpass')
 const { convertEfficacy } = require('../helper/convert')
+const SendEmail = require('../nodejs-email/sendEmail')
 
 
 class UserController {
@@ -190,7 +191,9 @@ class UserController {
             ]
         })
             // .then(data => res.send(data))
-            .then(data => res.render('customerPage' ,{ data, convertEfficacy }))
+            .then(data => {
+                res.render('customerPage' ,{ data, convertEfficacy })
+            })
             .catch(err => res.send(err))
     }
 
@@ -202,6 +205,11 @@ class UserController {
         })
             .then(_ => res.redirect(`/user/customer/${id}`))
             .catch(err => res.send(err))
+    }
+
+    static sendEmail(req,res){
+        SendEmail.senddingEmail(req.params.email)
+        res.redirect('/')
     }
 }
 
