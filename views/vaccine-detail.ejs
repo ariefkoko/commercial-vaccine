@@ -1,19 +1,8 @@
 <%- include('./partial/header',{title : 'Vaccine'}) %>
 <body>
-    <nav class="navbar navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/">Commercial Vaccine</a>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-            <div>
-                <a class="btn btn-primary" href="/user">Register</a>
-            </div>
-        </div>
-    </nav>
-    <div class="container">
-        <h1><%= data.vaccine_name %></h1>
+<%- include('./partial/navbar-home') %>
+    <div class="mt-4 container">
+        <h1 class="text-end"> <%= data.vaccine_name %></h1>
         <div class="card mb-3" style="max-width: 5400px;">
             <div class="row g-0">
                 <div class="col-md-4">
