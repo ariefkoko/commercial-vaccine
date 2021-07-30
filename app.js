@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express()
-const port = 3000;
+const port = process.env.PORT;
 const router = require('./routes')
 var session = require('express-session')
 app.use(session({
