@@ -2,6 +2,7 @@
 const {City,User,Vaccine,VaccineCity} = require('../models/index')
 const { correctPassword } = require('../helper/bcryptpass')
 const { convertEfficacy } = require('../helper/convert')
+const SendEmail = require('../nodejs-email/sendEmail')
 
 
 class UserController {
@@ -45,7 +46,10 @@ class UserController {
             where : { email }
         })
             .then(data => {
-                if(data.role === 'admin' && password === data.password) res.redirect('/user/admin');
+                if(data.role === 'admin' && password === data.password){
+                    req.session.isLogin = true
+                    res.redirect('/user/admin');
+                }    
                 else if (correctPassword(password, data.password)) res.redirect(`/user/customer/${data.id}`)
                 else res.send('email/password salah')
             })
@@ -187,7 +191,9 @@ class UserController {
             ]
         })
             // .then(data => res.send(data))
-            .then(data => res.render('customerPage' ,{ data, convertEfficacy }))
+            .then(data => {
+                res.render('customerPage' ,{ data, convertEfficacy })
+            })
             .catch(err => res.send(err))
     }
 
@@ -199,6 +205,11 @@ class UserController {
         })
             .then(_ => res.redirect(`/user/customer/${id}`))
             .catch(err => res.send(err))
+    }
+
+    static sendEmail(req,res){
+        SendEmail.senddingEmail(req.params.email)
+        res.redirect('/')
     }
 }
 
