@@ -30,7 +30,8 @@ class UserController {
                 res.redirect(`/user/customer/${id}`)
             })
             .catch(err => {
-                res.send(err)
+                const errors = err.errors.map(e => e.message)
+                res.send(errors)
             })
     }
 
