@@ -21,8 +21,15 @@ module.exports = (sequelize, DataTypes) => {
   };
   const {hasPassword} = require('../helper/bcryptpass')
   User.init({
-    CityId: DataTypes.INTEGER,
     VaccineId: DataTypes.INTEGER,
+    CityId: {
+      type: DataTypes.INTEGER,
+      validate : {
+        notEmpty : {
+          msg : 'Kota Tidak Boleh Kosong!'
+        }
+      }
+    },
     name: {
       type: DataTypes.STRING,
       validate : {
@@ -57,9 +64,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     hooks: {
-      beforeCreate: (instance, options) => {
-        return hasPassword(instance.password)
-      },
+      // beforeCreate: (instance, options) => {
+      //   return hasPassword(instance.password)
+      // },
+      beforeCreate(instance, options) {
+        instance.password = hasPassword(instance.password);
+        instance.role = 'customer';
+      }
     },
     sequelize,
     modelName: 'User',

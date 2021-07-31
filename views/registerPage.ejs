@@ -1,23 +1,30 @@
 <%- include('./partial/header',{title : "Register Page"}) %>
 <body>
-    <h1>Register</h1><br>
-    <form action="/user" method="POST">
-        <label>Name</label><br>
-        <input type="text" name="name"><br>
-        <label>Role</label><br>
-        <input type="text" name="role"><br>
-        <label>Email</label><br>
-        <input type="email" name="email"><br>
-        <label>Password</label><br>
-        <input type="password" name="password"><br><br>
-        <select name="cityId">
-            <option disabled selected>-- Kota --</option>
-            <% data.forEach(el => { %>
-                <option value="<%=el.id%>"><%=el.city_name%></option>
-            <%})%>
-        </select><br><br>
-        <input type="submit" value="Register">
-    </form>
-
+    <nav class="navbar navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/">Commercial Vaccine</a>
+            <div>
+                <a class="btn btn-outline-primary" href="/user/login">Login</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-4">
+        <h1 class="text-center">Register</h1><br>
+        <form action="/user/register" method="POST">
+            <label class="form-label">Name</label><br>
+            <input class="form-control" type="text" name="name"><br>
+            <label class="form-label">Email</label><br>
+            <input class="form-control" type="email" name="email"><br>
+            <label class="form-label">Password</label><br>
+            <input class="form-control" type="password" name="password"><br><br>
+            <select class="form-select" name="cityId">
+                <option value="" selected>-- Kota --</option>
+                <% data.forEach(el => { %>
+                    <option value="<%=el.id%>"><%=el.city_name%></option>
+                <%})%>
+            </select><br><br>
+            <input class=" btn btn-primary" type="submit" value="Register">
+        </form>
+    </div>
 </body>
 </html>

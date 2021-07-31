@@ -1,0 +1,51 @@
+<%- include('./partial/header',{title : "Customer"}) %>
+<body>
+  <nav class="navbar navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="/">Commercial Vaccine</a>
+    </div>
+</nav>
+    <div class="container">
+        <div>
+            <h1><%= data.name %></h1>
+            <p>email: <%= data.email %></p>
+            <p>City: <%= data.City.city_name %></p>
+            <% if (!data.Vaccine) { %>
+              <div>
+
+              </div>
+            <% } else { %>
+              <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img src="/image/<%= data.Vaccine.image %>" class="img-fluid rounded-start" alt="...">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title"><%= data.Vaccine.vaccine_name %></h5>
+                      <p class="card-text"><%= data.Vaccine.description %></p>
+                      <h2 class="card-text"><%= data.Vaccine.convertPrice() %></h2>
+                      <a href="/user/customer/<%= data.email %>/send " class="btn btn-warning">Process</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% } %> 
+        </div>
+        <div>
+            <% data.City.Vaccines.forEach(e => { %>
+                <div class="card" style="width: 18rem;">
+                    <img src="/image/<%= e.image %>"class="card-img-top" alt="..">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= e.vaccine_name %> </h5>
+                        <p class="card-text"><%= e.country_manufacture %> </p>
+                        <p class="card-text"><%= e.base_material %> </p>
+                        <p class="card-text">Efficacy : <%= convertEfficacy(e.efficacy) %> </p>    
+                        <a href="/user/customer/<%= data.id %>/pickVaccine/<%= e.id %>" class="btn btn-success">Pick</a>
+                    </div>
+                </div>
+            <% }) %> 
+        </div>
+    </div>
+</body>
+</html>

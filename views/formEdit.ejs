@@ -1,0 +1,25 @@
+<%- include('./partial/header',{title : "Home Page"}) %>
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/">Commercial Vaccine</a>
+        </div>
+    </nav>
+    <form action="/user/edit/<%=data.id%>" method="POST">
+        <h3>Add Vaccine</h3>
+        <label>Vaccine name</label><br>
+        <input value="<%=data.vaccine_name%>" type="text" name="vaccine_name"><br>
+        <label>Country Manufacture</label><br>
+        <input value="<%=data.country_manufacture%>" type="text" name="country_manufacture"><br>
+        <label>Base Material</label><br>
+        <input value="<%=data.base_material%>" type="text" name="base_material"><br>
+        <label>Effication</label><br>
+        <input value="<%=data.efficacy%>" type="number" name="effication"><br>
+        <label>Price</label><br>
+        <input value="<%=data.price%>" type="number" name="price"><br>
+        <label>Image</label><br>
+        <input value="<%=data.image%>" type="text" name="image"><br><br>
+        <input type="submit" value="Add Vaccine">
+    </form>
+</body>
+</html>

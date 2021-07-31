@@ -65,10 +65,10 @@
     },
     {
         "VaccineId": 1,
-        "CityId": 3
+        "CityId": 5
     },
     {
         "VaccineId": 2,
-        "CityId": 3
+        "CityId": 5
     }
 ]

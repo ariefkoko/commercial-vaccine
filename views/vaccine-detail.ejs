@@ -1,0 +1,24 @@
+<%- include('./partial/header',{title : 'Vaccine'}) %>
+<body>
+<%- include('./partial/navbar-home') %>
+    <div class="mt-4 container">
+        <h1 class="text-end"> <%= data.vaccine_name %></h1>
+        <div class="card mb-3" style="max-width: 5400px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="/image/<%= data.image %>" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Country Manufacturer : <%= data.country_manufacture %> </h5>
+                        <h5 class="card-title">Material Base : <%= data.base_material %> </h5>
+                        <h5 class="card-title">Efficacy : <%= convertEfficacy(data.efficacy) %> </h5>
+                        <h5 class="card-title">Price : <%= data.convertPrice() %> </h5>
+                        <h5 class="card-title">Description :</h5>
+                        <p class="card-text"> <%= data.description %></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
