@@ -5,14 +5,14 @@ class SendEmail {
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: 'wppq.yt@gmail.com',
-                pass: 'KataSandi;'
+                user: 'Your Email',
+                pass: 'your Email Password'
             }
         });
         
         const mailOptions = {
-            from: 'wppq.yt@gmail.com',
-            to: `${value}`,
+            from: 'Your Email',
+            to: `send To email`,
             subject: 'Sending Email using Nodejs',
             text: 'That was easy!'
         };
